@@ -1,0 +1,29 @@
+# Minimal kube-prometheus-stack config for a local demo cluster.
+# Alertmanager is disabled — this project has no on-call/alerting story,
+# just metrics + dashboards, so it would only add idle resource usage.
+alertmanager:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    retention: 1d
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - prometheus.linklib.local
+
+grafana:
+  adminPassword: admin
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.linklib.local
+  defaultDashboardsTimezone: Europe/Berlin
