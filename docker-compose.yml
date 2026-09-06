@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: linklib
+      POSTGRES_PASSWORD: linklib
+      POSTGRES_DB: linklib
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U linklib"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://linklib:linklib@db:5432/linklib
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: changeme
+      JWT_SECRET: local-dev-secret
+      CORS_ORIGINS: http://localhost:5173
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    environment:
+      API_URL: http://localhost:8000
+    ports:
+      - "5173:8080"
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
