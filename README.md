@@ -21,9 +21,9 @@ Two independently deployable services sharing only the HTTP API contract. In Kub
 
 ## 12-Factor App
 
-Not all 12 factors are relevant for a project this size, so only the ones we actually did something for are listed below.
+Not all 12 factors are relevant for a project this size, so only the ones actually implemented are listed below.
 
-| # | Factor | What we did |
+| # | Factor | Implementation |
 |---|---|---|
 | I | Codebase | One repo, two apps (`backend/`, `frontend/`), each with its own Dockerfile that builds its own image. |
 | III | Config | The app code itself never hardcodes config, it only reads env vars (`app/config.py`: `DATABASE_URL`, `JWT_SECRET`, `ADMIN_USERNAME`/`PASSWORD`, ...). |
