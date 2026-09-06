@@ -9,7 +9,6 @@ spec:
     - host: linklib.local
       http:
         paths:
-          # Backend routes are already prefixed with /api, so no rewrite is needed.
           - path: /api
             pathType: Prefix
             backend:

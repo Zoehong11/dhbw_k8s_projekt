@@ -11,9 +11,6 @@ prometheus:
       requests:
         cpu: 100m
         memory: 256Mi
-    # Pick up ServiceMonitors from any namespace/release label, not just
-    # ones matching this Helm release — simplest option for a single-app
-    # cluster like this one.
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
   ingress:

@@ -15,6 +15,5 @@ metadata:
   name: frontend-config
   namespace: linklib
 data:
-  # Same-origin: the browser talks to /api on whatever host it loaded the
-  # page from, and the Ingress routes that path to the backend service.
+  # Same-origin: the browser talks to /api on whatever host it loaded the page from, and the Ingress routes that path to the backend service.
   API_URL: ""
