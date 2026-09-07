@@ -61,6 +61,7 @@ docker build -t linklib-frontend:local ./frontend
 kind load docker-image linklib-backend:local linklib-frontend:local --name linklib
 
 # 4. Application manifests
+kubectl create namespace linklib
 kubectl apply -f k8s/base/
 
 # 5. Monitoring stack (see below)
